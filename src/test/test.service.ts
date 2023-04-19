@@ -4,9 +4,9 @@ import { firstValueFrom } from 'rxjs';
 
 @Injectable({})
 export class TestService {
-    constructor(private readonly httpService: HttpService) {}
+  constructor(private readonly httpService: HttpService) {}
 
-    /**
+  /**
    * Retrieves data from an external API, sorts it by ID in descending order,
    * removes the 'address' property from each data item, and returns the resulting
    * data as an array of objects.
