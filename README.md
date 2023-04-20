@@ -18,7 +18,7 @@ the obtained users are published in rabbitMQ.
 
 ___
 
-In order to execute the project you must have installed:
+In order to run the project you must have installed:
 - NodeJS 
 - NestJS
 - Docker
@@ -43,7 +43,7 @@ More about: https://docs.nestjs.com/
 ### Docker
 - [How to install Docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
 -  [About Docker Compose Installation](https://docs.docker.com/compose/install/linux/)
-- Others handy sources about the use of Docker 
+- Others handy resources about the use of Docker 
   - https://docs.docker.com/compose/reference/
   - https://docs.docker.com/engine/reference/commandline/container/
 
