@@ -56,7 +56,7 @@ Once you have Docker installed you should to follow the next steps:
 ```bash
 docker compose up
 ```
-Once you have you downloaded and the container initialized you could use:
+Once you have you downloaded and initialized the container you could use:
 ```bash
 docker start -ai <containerID>
 ```
