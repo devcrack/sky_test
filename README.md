@@ -12,9 +12,9 @@
 This project creates a small backend using the NestJS framework. 
 It simply exposes a GET endpoint "/test/users", 
 which provides a response with a body containing a list of users 
-with some properties. The users are sorted by Id in descending order. 
+with some properties and under some criteria.
 In addition to this, when making the "/test/users" request, 
-the obtained users are published in rabbitMQ.
+the obtained users are published in rabbitMQ under some criteria.
 
 ___
 
