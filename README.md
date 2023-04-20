@@ -16,8 +16,8 @@ with some properties. The users are sorted by Id in descending order.
 In addition to this, when making the "/test/users" request, 
 the obtained users are published in rabbitMQ.
 
-[More about](docs/Prueba tecnica.pdf)
 ___
+
 In order to execute the project you must have installed:
 - NodeJS 
 - NestJS
