@@ -1,10 +1,36 @@
-import { Injectable} from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
+// import client, {Connection, connect} from "amqplib";
+import { connect } from 'amqplib';
+
+const exchangeName = 'users';
+const exchangeType = 'fanout';
+const queueName = 'users-requested';
 
 @Injectable({})
 export class TestService {
   constructor(private readonly httpService: HttpService) {}
+  private async publishUsers(message: string) {
+    try {
+      const connection = await connect('amqp://guest:guest@localhost:5672');
+      const channel = await connection.createChannel();
+
+      // assert the exchange and queue
+      await channel.assertExchange(exchangeName, exchangeType, {
+        durable: false,
+      });
+      await channel.assertQueue(queueName, { durable: false });
+      await channel.bindQueue(queueName, exchangeName, '');
+
+      channel.publish(exchangeName, '', Buffer.from(message));
+      // console.log(
+      //   `Published message to exchange '${exchangeName}': ${message}`,
+      // );
+    } catch (error) {
+      console.error('Error publishing message to exchange:', error);
+    }
+  }
 
   /**
    * Retrieves data from an external API, sorts it by ID in descending order,
@@ -39,7 +65,7 @@ export class TestService {
         Object.keys(data_item).forEach((key) => {
           // If the property is not 'address', add it to the new object.
           if (key !== 'address') {
-            console.log(key, data_item[key]);
+            // console.log(key, data_item[key]);
             nw_obj[key] = data_item[key];
           }
         });
@@ -48,6 +74,11 @@ export class TestService {
         returned_data.push(nw_obj);
       });
 
+      // Before to leave
+      const users_with_even_id = returned_data.filter(
+        (user) => user.id % 2 == 0,
+      );
+      await this.publishUsers(JSON.stringify(users_with_even_id));
       // Return the processed data array.
       return returned_data;
     } catch (error) {
