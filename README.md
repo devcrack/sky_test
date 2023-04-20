@@ -4,8 +4,8 @@
 
 
 
-  <p align="center">A technical test for fullstack job position at sky :blush: </p>
-    <p align="center">
+  :star2:<p align="center">A technical test for fullstack job position at sky :blush: </p>
+    <p align="center">:star2:
 
 ## Description
 
