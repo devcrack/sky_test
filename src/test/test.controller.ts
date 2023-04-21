@@ -21,6 +21,6 @@ export class TestController {
    */
   @Get('users')
   get_users() {
-    return this.testService.getSomething();
+    return this.testService.getUsers();
   }
 }
